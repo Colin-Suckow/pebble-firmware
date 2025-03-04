@@ -79,7 +79,7 @@ def pbi_to_png(pbi, pixel_bytearray):
             pixel_rgba_array.append(((argb8 >> 6) & 0x3) * 85)  # a
 
         png = Image.frombuffer('RGBA', (pbi.bounds_w, pbi.bounds_h),
-                               buffer(pixel_rgba_array), 'raw', 'RGBA', pbi.stride * 4, 1)
+                               memoryview(pixel_rgba_array), 'raw', 'RGBA', pbi.stride * 4, 1)
 
     elif gbitmap_version == 1 and pbi_is_palettized(gbitmap_format):
         bitdepth = pbi_bitdepth(gbitmap_format)
@@ -124,7 +124,7 @@ def pbi_to_png(pbi, pixel_bytearray):
         png = Image.frombuffer('1', (pbi.bounds_w, pbi.bounds_h),
                                buffer(pixel_bytearray), 'raw', '1', pbi.stride, 1)
     else:
-        print "Bad PBI"
+        print("Bad PBI")
         png = None
 
     return png

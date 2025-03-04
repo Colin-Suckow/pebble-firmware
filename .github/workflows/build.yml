@@ -63,7 +63,10 @@ jobs:
       - name: Build recovery FW
         if: ${{ matrix.board == 'asterix_evt1' }}
         run: ./waf build_prf
-
+      
+      - name: Run tests
+        run: ./waf test
+      
       - name: Store firmware images
         uses: actions/upload-artifact@v4
         with:
