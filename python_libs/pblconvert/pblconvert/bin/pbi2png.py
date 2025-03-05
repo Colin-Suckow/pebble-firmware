@@ -82,7 +82,7 @@ def pbi_to_png(pbi, pixel_bytearray):
         # converting the depth-packed indexes for the palette to an unpacked list
         idx = 0  # index of actual packed values including padded values
         for pxl8 in pixel_bytearray[:palette_offset]:
-            for i in xrange(0, 8 / bitdepth):
+            for i in range(0, 8 / bitdepth):
                 # only append actual pixels, ignoring padding pixels
                 # which is the difference between the width and the stride
                 if (idx % (pbi.stride * (8 / bitdepth)) < pbi.bounds_w):
