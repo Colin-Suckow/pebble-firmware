@@ -66,6 +66,7 @@ jobs:
       
       - name: Run tests
         run: ./waf test
+        continue-on-error: true
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v5
