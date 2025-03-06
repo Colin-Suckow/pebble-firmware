@@ -413,6 +413,10 @@ def clar(bld, sources=None, sources_ant_glob=None, test_sources_ant_glob=None,
     if test_sources_ant_glob is None and not test_sources:
         raise Exception()
 
+    if test_sources_ant_glob in bld.env.BROKEN_TESTS:
+        Logs.pprint('RED', f'Skipping glob because it is in the BROKEN_TESTS list: {test_sources_ant_glob}')
+        return
+
     if test_sources is None:
         test_sources = []
 

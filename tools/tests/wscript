@@ -1,7 +1,6 @@
 def build(bld):
-    # UNIT_TEST_DISABLED
-    # These tools are full of python2 code. Disabling to avoid a major refactor
-    return
+    if bld.env.PYTHON_TOOL_TESTS_DISABLED:
+        return
     tests = bld.path.ant_glob('test_*.py')
     bld(rule="python -m unittest discover -s {} -p 'test_*.py'".format(bld.path.abspath()),
         source=tests)
