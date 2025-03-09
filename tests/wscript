@@ -315,10 +315,6 @@ def build(bld):
     # Disable warning promotion. Not ideal, but gets most of the tests running again without straight up disabling the new warnings
     bld.env.CFLAGS.append('-Wno-error')
 
-    # time_t is defined in sys/types in newlib, and time.h on recent Linux
-    # so just force the defined type for testing time
-    #bld.env.CFLAGS.append('-Dtime_t=__SYSCALL_SLONG_TYPE')
-
     # Many tests operate on a set of test images and require tools to process these
     # images and therefore need extra defines. Set up our environment first before running any
     # tests.
